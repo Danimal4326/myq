@@ -1,18 +1,18 @@
 {
   "name": "@hjdhjd/myq",
   "type": "module",
-  "version": "7.0.1.1",
+  "version": "7.9.1",
   "displayName": "myQ API",
   "description": "A nearly complete and modern implementation of the Liftmaster / Chamberlain myQ API.",
   "author": {
     "name": "HJD",
-    "url": "https://github.com/hjdhjd"
+    "url": "https://github.com/danimal4326"
   },
-  "homepage": "https://github.com/hjdhjd/myq#readme",
+  "homepage": "https://github.com/danimal4326/myq#readme",
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "git://github.com/hjdhjd/myq.git"
+    "url": "git://github.com/danimal4326/myq.git"
   },
   "bugs": {
     "url": "https://github.com/hjdhjd/myq/issues"
