@@ -117,7 +117,7 @@ export class myQApi {
   // Transmit the PKCE challenge and retrieve the myQ OAuth authorization page to prepare to login.
   private async oauthGetAuthPage(codeChallenge: string): Promise<Response | null> {
 
-    const authEndpoint = new URL("https://partner-identity.myq-cloud.com/connect/authorize");
+    const authEndpoint = new URL("https://partner-identity-west.myq-cloud.com/connect/authorize");
 
     // Set the client identifier.
     authEndpoint.searchParams.set("client_id", "IOS_CGI_MYQ");
@@ -263,7 +263,7 @@ export class myQApi {
 
     // Now we execute the final login redirect that will validate the PKCE challenge and
     // return our access and refresh tokens.
-    response = await this.retrieve("https://partner-identity.myq-cloud.com/connect/token", {
+    response = await this.retrieve("https://partner-identity-west.myq-cloud.com/connect/token", {
       body: requestBody.toString(),
       headers: {
         "Content-Type": "application/x-www-form-urlencoded"
@@ -308,7 +308,7 @@ export class myQApi {
     });
 
     // Execute the refresh token request.
-    const response = await this.retrieve("https://partner-identity.myq-cloud.com/connect/token", {
+    const response = await this.retrieve("https://partner-identity-west.myq-cloud.com/connect/token", {
       body: requestBody.toString(),
       headers: {
         "Content-Type": "application/x-www-form-urlencoded"
@@ -464,7 +464,7 @@ export class myQApi {
 
       // Get the list of device information for this account.
       // eslint-disable-next-line no-await-in-loop
-      const response = await this.retrieve("https://devices.myq-cloud.com/api/v5.2/Accounts/" + accountId + "/Devices");
+      const response = await this.retrieve("https://devices-west.myq-cloud.com/api/v5.2/Accounts/" + accountId + "/Devices");
 
       if(!response) {
 
@@ -536,12 +536,12 @@ export class myQApi {
     if(device.device_family === "lamp") {
 
       // Execute a command on a lamp device.
-      response = await this.retrieve("https://account-devices-lamp.myq-cloud.com/api/v5.2/Accounts/" + device.account_id +
+      response = await this.retrieve("https://account-devices-lamp-west.myq-cloud.com/api/v5.2/Accounts/" + device.account_id +
         "/lamps/" + device.serial_number + "/" + command, { method: "PUT" });
     } else {
 
       // By default, we assume we're targeting a garage door opener.
-      response = await this.retrieve("https://account-devices-gdo.myq-cloud.com/api/v5.2/Accounts/" + device.account_id +
+      response = await this.retrieve("https://account-devices-gdo-west.myq-cloud.com/api/v5.2/Accounts/" + device.account_id +
         "/door_openers/" + device.serial_number + "/" + command, { method: "PUT" });
     }
 
@@ -561,7 +561,7 @@ export class myQApi {
   private async getAccounts(): Promise<boolean> {
 
     // Get the account information.
-    const response = await this.retrieve("https://accounts.myq-cloud.com/api/v6.0/accounts");
+    const response = await this.retrieve("https://accounts-west.myq-cloud.com/api/v6.0/accounts");
 
     if(!response) {
       this.log.error("myQ API: Unable to retrieve account information.");
